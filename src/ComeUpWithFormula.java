@@ -93,3 +93,11 @@ public class ComeUpWithFormula {
 //a: 8500
 //a: 8750
 //a: 9000
+
+
+
+//additional solution
+//a: 9250
+//Solved a, b, c: 9464, 11489, 2922
+//a: 9500
+//a: 9750
