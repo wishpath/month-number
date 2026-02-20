@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Main {
   public static void main(String[] args) {
-    List<String> inputs = List.of(
+    List<String> testInputs = List.of(
         "January", "january", "JAN", "Jan",
         "February", "february", "FEB", "Feb",
         "March", "march", "MAR", "Mar",
@@ -18,7 +18,7 @@ public class Main {
         "December", "december", "DEC", "Dec"
     );
 
-    for (String input : inputs) {
+    for (String input : testInputs) {
       int result = calculateMonthNumber(input);
       System.out.println("\u001B[36mInput: \u001B[33m" + input + "\u001B[36m  ->  Month #: \u001B[32m" + result + "\u001B[0m");
     }
