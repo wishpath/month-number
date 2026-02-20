@@ -6,7 +6,6 @@ Turn any English month name into its numeric month instantly — no arrays, no m
 
 ## Why This Project is Awesome
 
-- **Blazing fast** – The method computes month numbers in **O(1) time**, independent of input length.
 - **No memory wasted** – No string arrays or lookups; the formula works directly from the first three letters.
 - **Compact and clever** – A tiny math formula maps all month names perfectly.
 - **Flexible** – Supports full names, abbreviations, and any capitalization.
