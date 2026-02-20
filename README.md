@@ -1,24 +1,22 @@
 # month-number
 
-Turn any English month name into its numeric month instantly — no arrays, no maps, no storage, just math.
+I really wanted to share this little project.
 
----
+Yesterday I had a random thought:  
+Is there a mathematical formula that, if you feed it a month name as a string, can *compute* which month number it is — purely from the letters?
+So I brute-forced roughly **7 trillion formulas** in 24 hours...
+And one of them works 😅
 
-## Why This Project is Awesome
+The result is a tiny deterministic function that takes the first three letters of any English month name and instantly computes its correct month number.
 
-- **No memory wasted** – No string arrays or lookups; the formula works directly from the first three letters.
-- **Compact and clever** – A tiny math formula maps all month names perfectly.
-- **Flexible** – Supports full names, abbreviations, and any capitalization.
-- **Demonstrates perfect hashing** – Shows how a simple deterministic formula can replace traditional storage-based approaches.
+It’s:
 
----
+- **O(1) time**
+- **O(1) space**
+- Zero lookup storage
+- Pure arithmetic + hashing
 
-## Example Output
+It feels slightly unnecessary. But yet again, as an exercise it flexes what can be done.
 
-```text
-Input: January  ->  Month #: 1
-Input: JAN      ->  Month #: 1
-Input: february ->  Month #: 2
-Input: Mar      ->  Month #: 3
-Input: AUG      ->  Month #: 8
-Input: December ->  Month #: 12
+Sometimes you brute-force the universe…  
+and it answers.
