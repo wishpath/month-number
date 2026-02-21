@@ -33,6 +33,21 @@ public class PerformanceTest {
       7, -1, 6, -1, -1, -1, -1, -1, 11
   };
 
+  private static final int[][][] TRIE = new int[26][26][26];
+
+  static {
+    put("jan", 1); put("feb", 2); put("mar", 3); put("apr", 4);
+    put("may", 5); put("jun", 6); put("jul", 7); put("aug", 8);
+    put("sep", 9); put("oct", 10); put("nov", 11); put("dec", 12);
+  }
+
+  private static void put(String key, int month) {
+    int i0 = key.charAt(0) - 'a';
+    int i1 = key.charAt(1) - 'a';
+    int i2 = key.charAt(2) - 'a';
+    TRIE[i0][i1][i2] = month;
+  }
+
   public static void main(String[] args) {
     for (int i = 0; i < 5_000_000; i++) Main.calculateMonthNumber("January"); // Warmup
     long start = System.nanoTime();
@@ -110,6 +125,24 @@ public class PerformanceTest {
     }
     seconds = (System.nanoTime() - start) / 1_000_000_000.0;
     System.out.println("\n\u001B[35m========== PERFORMANCE TEST (int[] ARR)==========\u001B[0m");
+    System.out.println("\u001B[36mElapsed time: \u001B[33m" + String.format("%.3f", seconds) + " s\u001B[0m");
+    System.out.println("\u001B[36mTotal executions: \u001B[32m" + String.format("%,d", count) + "\u001B[0m");
+    System.out.println("\u001B[35m======================================\u001B[0m\n");
+
+
+
+
+
+
+    for (int i = 0; i < 5_000_000; i++) alternativeCalculateMonthNumber5("January"); // Warmup
+    start = System.nanoTime();
+    count = 0;
+    for (int i = 0; System.nanoTime() - start < ONE_SECOND_IN_NANOSECONDS * 10; count++, i = (i + 1) % Main.TEST_INPUTS.size()) {
+      alternativeCalculateMonthNumber5(Main.TEST_INPUTS.get(i));
+      if (count == Integer.MAX_VALUE) throw new RuntimeException("Overflow");
+    }
+    seconds = (System.nanoTime() - start) / 1_000_000_000.0;
+    System.out.println("\n\u001B[35m========== PERFORMANCE TEST (TRIE)==========\u001B[0m");
     System.out.println("\u001B[36mElapsed time: \u001B[33m" + String.format("%.3f", seconds) + " s\u001B[0m");
     System.out.println("\u001B[36mTotal executions: \u001B[32m" + String.format("%,d", count) + "\u001B[0m");
     System.out.println("\u001B[35m======================================\u001B[0m\n");
@@ -194,5 +227,21 @@ public class PerformanceTest {
       throw new IllegalArgumentException("Unknown month");
 
     return MONTH_ARR[index];
+  }
+
+  public static int alternativeCalculateMonthNumber5(String month) {
+    if (month == null || month.length() < 3) throw new IllegalArgumentException("Invalid month");
+
+    int i0 = Character.toLowerCase(month.charAt(0)) - 'a';
+    int i1 = Character.toLowerCase(month.charAt(1)) - 'a';
+    int i2 = Character.toLowerCase(month.charAt(2)) - 'a';
+
+    if (i0 < 0 || i0 >= 26 || i1 < 0 || i1 >= 26 || i2 < 0 || i2 >= 26)
+      throw new IllegalArgumentException("Unknown month");
+
+    int result = TRIE[i0][i1][i2];
+    if (result == 0) throw new IllegalArgumentException("Unknown month");
+
+    return result;
   }
 }
