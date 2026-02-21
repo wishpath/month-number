@@ -2,23 +2,23 @@
 import java.util.List;
 
 public class Main {
+  public static final List<String> TEST_INPUTS = List.of(
+      "January", "january", "JAN", "Jan",
+      "February", "february", "FEB", "Feb",
+      "March", "march", "MAR", "Mar",
+      "April", "april", "APR", "Apr",
+      "May", "may", "MAY",
+      "June", "june", "JUN", "Jun",
+      "July", "july", "JUL", "Jul",
+      "August", "august", "AUG", "Aug",
+      "September", "september", "SEP", "Sep",
+      "October", "october", "OCT", "Oct",
+      "November", "november", "NOV", "Nov",
+      "December", "december", "DEC", "Dec"
+  );
   public static void main(String[] args) {
-    List<String> testInputs = List.of(
-        "January", "january", "JAN", "Jan",
-        "February", "february", "FEB", "Feb",
-        "March", "march", "MAR", "Mar",
-        "April", "april", "APR", "Apr",
-        "May", "may", "MAY",
-        "June", "june", "JUN", "Jun",
-        "July", "july", "JUL", "Jul",
-        "August", "august", "AUG", "Aug",
-        "September", "september", "SEP", "Sep",
-        "October", "october", "OCT", "Oct",
-        "November", "november", "NOV", "Nov",
-        "December", "december", "DEC", "Dec"
-    );
 
-    for (String input : testInputs) {
+    for (String input : TEST_INPUTS) {
       int result = calculateMonthNumber(input);
       System.out.println("\u001B[36mInput: \u001B[33m" + input + "\u001B[36m  ->  Month #: \u001B[32m" + result + "\u001B[0m");
     }
